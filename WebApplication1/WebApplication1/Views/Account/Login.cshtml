@@ -1,0 +1,70 @@
+﻿@model WebApplication1.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<div class="auth-wrapper d-flex align-items-center justify-content-center">
+    <div class="card auth-card border-0 shadow-lg">
+        <div class="card-body p-4 p-sm-5 text-center">
+            <div class="auth-header-icon mb-3">
+                <i class="bi bi-box-seam fs-3"></i>
+            </div>
+            
+            <h4 class="fw-bold text-body mb-1">Welcome Back</h4>
+            <p class="text-body-secondary small mb-4">Log in to manage package records</p>
+
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger text-start py-2 px-3 mb-4 small" role="alert"></div>
+
+            <form asp-action="Login" method="post" class="text-start">
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label small fw-semibold text-body-secondary">Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-body-tertiary border-secondary-subtle text-body-secondary">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        <input asp-for="Username" class="form-control border-secondary-subtle bg-body text-body" placeholder="Username" />
+                    </div>
+                    <span asp-validation-for="Username" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Password" class="form-label small fw-semibold text-body-secondary">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-body-tertiary border-secondary-subtle text-body-secondary">
+                            <i class="bi bi-lock"></i>
+                        </span>
+                        <input asp-for="Password" type="password" id="passwordInput" class="form-control border-secondary-subtle bg-body text-body" placeholder="Password" />
+                        <button type="button" class="btn btn-outline-secondary border-secondary-subtle" onclick="togglePassword()">
+                            <i class="bi bi-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-2 shadow-sm">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+                </button>
+            </form>
+        </div>
+
+        <div class="card-footer bg-body-tertiary border-top border-secondary-subtle text-center py-3">
+            <span class="small text-body-secondary">Don't have an account?</span>
+            <a asp-action="Register" class="small fw-semibold text-primary text-decoration-none ms-1">Register here</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePassword() {
+        const input = document.getElementById('passwordInput');
+        const icon = document.getElementById('toggleIcon');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('bi-eye', 'bi-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.replace('bi-eye-slash', 'bi-eye');
+        }
+    }
+</script>

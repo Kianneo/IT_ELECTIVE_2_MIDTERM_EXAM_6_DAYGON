@@ -1,0 +1,22 @@
+﻿@model WebApplication1.Models.Package
+@{
+    ViewData["Title"] = "Mark Package Claimed";
+}
+
+<h2>Mark Package as Claimed</h2>
+<hr />
+
+<div class="alert alert-warning col-md-8">
+    <p>Are you sure you want to mark this package as <strong>Claimed</strong>?</p>
+    <ul>
+        <li><strong>Tracking No:</strong> @Model.TrackingNumber</li>
+        <li><strong>Recipient:</strong> @Model.RecipientName</li>
+        <li><strong>Courier:</strong> @Model.CourierCompany</li>
+    </ul>
+</div>
+
+<form asp-action="ConfirmClaim" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <button type="submit" class="btn btn-success">Confirm Claim</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

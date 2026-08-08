@@ -1,0 +1,63 @@
+﻿@model WebApplication1.Models.Package
+@{
+    ViewData["Title"] = "Package Details";
+}
+
+<h2>Package Details</h2>
+<hr />
+
+<div class="card col-md-8">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">Tracking Number</dt>
+            <dd class="col-sm-8">@Model.TrackingNumber</dd>
+
+            <dt class="col-sm-4">Recipient Name</dt>
+            <dd class="col-sm-8">@Model.RecipientName</dd>
+
+            <dt class="col-sm-4">Unit / Office</dt>
+            <dd class="col-sm-8">@Model.UnitNumber</dd>
+
+            <dt class="col-sm-4">Contact Number</dt>
+            <dd class="col-sm-8">@Model.ContactNumber</dd>
+
+            <dt class="col-sm-4">Courier Company</dt>
+            <dd class="col-sm-8">@Model.CourierCompany</dd>
+
+            <dt class="col-sm-4">Package Type</dt>
+            <dd class="col-sm-8">@Model.PackageType</dd>
+
+            <dt class="col-sm-4">Arrival Date & Time</dt>
+            <dd class="col-sm-8">@Model.ArrivalDateTime.ToString("f")</dd>
+
+            <dt class="col-sm-4">Expected Pickup Date</dt>
+            <dd class="col-sm-8">@(Model.ExpectedPickupDate.HasValue ? Model.ExpectedPickupDate.Value.ToString("d") : "N/A")</dd>
+
+            <dt class="col-sm-4">Received By</dt>
+            <dd class="col-sm-8">@Model.ReceivedBy</dd>
+
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8">
+                @if (Model.Status == WebApplication1.Models.PackageStatus.WaitingForPickup)
+                {
+                    <span class="badge bg-warning text-dark">Waiting for Pickup</span>
+                }
+                else
+                {
+                    <span class="badge bg-success">Claimed</span>
+                }
+            </dd>
+
+            <dt class="col-sm-4">Claimed Date & Time</dt>
+            <dd class="col-sm-8">@(Model.ClaimedDateTime.HasValue ? Model.ClaimedDateTime.Value.ToString("f") : "N/A")</dd>
+
+            <dt class="col-sm-4">Notes</dt>
+            <dd class="col-sm-8">@(string.IsNullOrEmpty(Model.Notes) ? "None" : Model.Notes)</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

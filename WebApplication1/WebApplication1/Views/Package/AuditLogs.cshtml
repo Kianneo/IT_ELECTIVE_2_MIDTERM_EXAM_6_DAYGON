@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebApplication1.Models.AuditLog>
+@{
+    ViewData["Title"] = "System Audit Logs";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
+    <div>
+        <h2 class="fw-bold mb-1">System Audit Logs</h2>
+        <p class="text-secondary small mb-0">Track system activities, creation, claim actions, and deletions.</p>
+    </div>
+    <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back to Monitor</a>
+</div>
+
+<div class="card border-secondary shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-secondary border-bottom border-secondary">
+                <tr>
+                    <th class="ps-3">Timestamp</th>
+                    <th>User / Staff</th>
+                    <th>Action</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">
+                            <i class="bi bi-journal-x fs-3 d-block mb-2"></i> No system logs recorded yet.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var log in Model)
+                    {
+                        <tr>
+                            <td class="ps-3 small text-muted">@log.Timestamp.ToString("f")</td>
+                            <td><span class="badge bg-secondary"><i class="bi bi-person"></i> @log.User</span></td>
+                            <td><strong class="text-primary">@log.Action</strong></td>
+                            <td class="small">@log.Details</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

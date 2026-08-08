@@ -1,0 +1,79 @@
+﻿@model WebApplication1.Models.Package
+@{
+    ViewData["Title"] = "Edit Package";
+}
+
+<h2>Edit Package Information</h2>
+<hr />
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Status" />
+    <input type="hidden" asp-for="ClaimedDateTime" />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="TrackingNumber" class="form-label"></label>
+            <input asp-for="TrackingNumber" class="form-control" />
+            <span asp-validation-for="TrackingNumber" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="RecipientName" class="form-label"></label>
+            <input asp-for="RecipientName" class="form-control" />
+            <span asp-validation-for="RecipientName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="UnitNumber" class="form-label"></label>
+            <input asp-for="UnitNumber" class="form-control" />
+            <span asp-validation-for="UnitNumber" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="ContactNumber" class="form-label"></label>
+            <input asp-for="ContactNumber" class="form-control" />
+            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="CourierCompany" class="form-label"></label>
+            <input asp-for="CourierCompany" class="form-control" />
+            <span asp-validation-for="CourierCompany" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="PackageType" class="form-label"></label>
+            <input asp-for="PackageType" class="form-control" />
+            <span asp-validation-for="PackageType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label asp-for="ArrivalDateTime" class="form-label"></label>
+            <input asp-for="ArrivalDateTime" class="form-control" type="datetime-local" />
+            <span asp-validation-for="ArrivalDateTime" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="ExpectedPickupDate" class="form-label"></label>
+            <input asp-for="ExpectedPickupDate" class="form-control" type="date" />
+            <span asp-validation-for="ExpectedPickupDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ReceivedBy" class="form-label"></label>
+        <input asp-for="ReceivedBy" class="form-control" />
+        <span asp-validation-for="ReceivedBy" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Package</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

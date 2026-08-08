@@ -1,0 +1,95 @@
+﻿@model WebApplication1.Models.Package
+
+@{
+    ViewData["Title"] = "Register Incoming Package";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card border-secondary shadow-sm">
+            <div class="card-header bg-body-tertiary border-secondary py-3">
+                <h4 class="card-title fw-bold mb-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-box-seam text-primary"></i> Register Incoming Package
+                </h4>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label asp-for="TrackingNumber" class="form-label fw-semibold">Tracking Number</label>
+                            <input asp-for="TrackingNumber" class="form-control border-secondary" placeholder="e.g., TRK987654" />
+                            <span asp-validation-for="TrackingNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="RecipientName" class="form-label fw-semibold">Recipient Name</label>
+                            <input asp-for="RecipientName" class="form-control border-secondary" placeholder="Full name" />
+                            <span asp-validation-for="RecipientName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="UnitNumber" class="form-label fw-semibold">Unit / Office</label>
+                            <input asp-for="UnitNumber" class="form-control border-secondary" placeholder="Apt 4B / Suite 101" />
+                            <span asp-validation-for="UnitNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="ContactNumber" class="form-label fw-semibold">Contact Number</label>
+                            <input asp-for="ContactNumber" class="form-control border-secondary" placeholder="09xxxxxxxxx" />
+                            <span asp-validation-for="ContactNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="CourierCompany" class="form-label fw-semibold">Courier Company</label>
+                            <input asp-for="CourierCompany" class="form-control border-secondary" placeholder="FedEx, DHL, Lalamove..." />
+                            <span asp-validation-for="CourierCompany" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="PackageType" class="form-label fw-semibold">Package Type</label>
+                            <input asp-for="PackageType" class="form-control border-secondary" placeholder="Box, Envelope, Parcel..." />
+                            <span asp-validation-for="PackageType" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="ArrivalDateTime" class="form-label fw-semibold">Arrival Date & Time</label>
+                            <input asp-for="ArrivalDateTime" type="datetime-local" class="form-control border-secondary" />
+                            <span asp-validation-for="ArrivalDateTime" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="ExpectedPickupDate" class="form-label fw-semibold">Expected Pickup Date</label>
+                            <input asp-for="ExpectedPickupDate" type="date" class="form-control border-secondary" />
+                            <span asp-validation-for="ExpectedPickupDate" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="ReceivedBy" class="form-label fw-semibold">Received By</label>
+                            <input asp-for="ReceivedBy" class="form-control border-secondary" placeholder="Staff member name" />
+                            <span asp-validation-for="ReceivedBy" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="Notes" class="form-label fw-semibold">Notes</label>
+                            <textarea asp-for="Notes" class="form-control border-secondary" rows="3" placeholder="Optional notes (e.g., fragile, refrigerated)"></textarea>
+                            <span asp-validation-for="Notes" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Save Package</button>
+                        <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-x-lg"></i> Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
